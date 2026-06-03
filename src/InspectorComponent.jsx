@@ -1,4 +1,5 @@
 import {useState} from "react";
+import officeLocations from "./office-locations"
 
 import { InspectorComponent } from "@visuallyjs/browser-ui-react"
 
@@ -49,6 +50,22 @@ export default function OrgchartInspector({onSelect}) {
 
                 <h1>{current.data.name}</h1>
                 <h2>{current.data.title}</h2>
+
+                <div className="vjs-orgchart-inspector-details">
+                    <div className="vjs-node-status-container">
+                        <span className={`vjs-node-status ${current.data.online ? 'vjs-node-status-online' : 'vjs-node-status-offline'}`}></span>
+                        <span className="vjs-node-status-text">{current.data.online ? 'Online' : 'Offline'}</span>
+                    </div>
+                    <a href={`mailto:${current.data.email}`} className="vjs-node-email">{current.data.email}</a>
+                    <span className="vjs-node-location">
+                        {current.data.location}
+                        {(() => {
+                            const locationData = officeLocations.find(loc => loc.name === current.data.location)
+                            const timezone = locationData ? locationData.timezone : ""
+                            return timezone && <span className="vjs-node-timezone"> ({timezone.match(/\((UTC[+-]\d+)\)/)?.[1] || timezone})</span>
+                        })()}
+                    </span>
+                </div>
 
                 {manager != null && <>
                     <h5>Reports to:</h5>

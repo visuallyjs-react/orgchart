@@ -23,6 +23,10 @@ The application is built using several core components from `@visuallyjs/browser
 ## Interaction Logic
 The chart features interactive selection: when a person is selected in the inspector, the application programmatically centers the view on that person and zooms in using the `centerOnAndZoom` method of the surface.
 
+## Showing content based on zoom
+
+The `useZoom` hook is used to show extra details about each user when the zoom level is greater than 1.
+
 ## CSS Integration
 - **VisuallyJS Core**: The core styles are included in `src/index.css` via `@import "@visuallyjs/browser-ui/css/visuallyjs.css";`.
 - **App Styles**: Custom styles for the employee cards and the organizational layout are imported from `orgchart.css`.
